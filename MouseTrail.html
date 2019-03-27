@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<H1>Mouse Trail</H1>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MouseTrail</title>
+</head>
+<style>
+    .trail { /* className for the trail elements */
+        position: absolute;
+        height: 6px; width: 6px;
+        border-radius: 3px;
+        background: red;
+    }
+    body {
+        height: 300px;
+    }
+    H1{
+        font-size: 3cm;
+        color: aqua;
+        position: relative;
+        left: 50%;
+    }
+</style>
+
+<body style="background-color: black;">
+<script>
+  let dots = [];
+  for (let i = 0; i < 12; i++) {
+    let node = document.createElement("div");
+    node.className = "trail";
+    document.body.appendChild(node);
+    dots.push(node);
+  }
+  let currentDot = 0;
+
+  window.addEventListener("mousemove", event => {
+    let dot = dots[currentDot];
+    dot.style.left = (event.pageX - 3) + "px";
+    dot.style.top = (event.pageY - 3) + "px";
+    currentDot = (currentDot + 1) % dots.length;
+  });
+</script>
+
+</body>
+</html>
